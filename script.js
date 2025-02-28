@@ -88,6 +88,7 @@ yesButton.addEventListener("click", function() {
                 <h1> Now we are a couple of lovers <br>
                 You are not allowed to decline😝 </h1>            
             </div>
+            <div class="watermark-line"></div>
         `;
         document.body.style.overflow = "hidden";
     }, 3000);
