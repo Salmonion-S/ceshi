@@ -83,9 +83,9 @@ yesButton.addEventListener("click", function() {
         document.body.innerHTML = `
             <div class="yes-screen">
                 <h1 class="yes-text">Good choice!!! </br> 
-                A7bkkk Akthr!!! (♡°▽°♡)</h1>
+                A7bkkk!!! (♡°▽°♡)</h1>
                 <img src="./images/hug.png" alt="拥抱" class="yes-image">
-                <h1> Now we are a couple of lovers <br>
+                <h1> Now u r mine, n also we are a couple of lovers <br>
                 You are not allowed to decline😝 </h1>            
             </div>
             <div class="watermark-line"></div>
