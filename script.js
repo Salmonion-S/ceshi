@@ -1,4 +1,3 @@
-// script.js
 const preloadImages = ['shocked.png', 'think.png', 'angry.png', 'crying.png', 'hug.png'];
 preloadImages.forEach(img => {
   new Image().src = `./images/${img}`;
@@ -8,6 +7,7 @@ let yesButton = document.getElementById("yes");
 let noButton = document.getElementById("no");
 let questionText = document.getElementById("question");
 let mainImage = document.getElementById("mainImage");
+let container = document.querySelector(".container");
 
 let clickCount = 0;
 
@@ -22,7 +22,7 @@ const noTexts = [
     "I will shoot myself"
 ];
 
-// 烟花特效函数
+// Efek kembang api
 function createFirework() {
     const colors = ['#ff3366', '#ffd700', '#00ff87', '#7d3cff'];
     const firework = document.createElement("div");
@@ -34,18 +34,24 @@ function createFirework() {
     setTimeout(() => firework.remove(), 1000);
 }
 
+// Event klik tombol NO
 noButton.addEventListener("click", function() {
     if (navigator.vibrate) navigator.vibrate(100);
     clickCount++;
 
-    yesButton.style.transform = `scale(${1 + (clickCount * 1.2)})`;
+    // Membesarkan container tanpa border
+    container.style.transform = `translate(-50%, -50%) scale(${1 + (clickCount * 0.1)})`;
+
+    yesButton.style.transform = `scale(${1 + (clickCount * 0.2)})`;
     noButton.style.transform = `translateX(${clickCount * 50}px)`;
-    
+
     mainImage.style.transform = `translateY(-${clickCount * 25}px)`;
     questionText.style.transform = `translateY(-${clickCount * 25}px)`;
 
-    if (clickCount <= 8) noButton.innerText = noTexts[clickCount - 1];
-    
+    if (clickCount <= noTexts.length) {
+        noButton.innerText = noTexts[clickCount - 1];
+    }
+
     const imgMap = {
         1: "shocked.png",
         2: "think.png", 
@@ -54,13 +60,15 @@ noButton.addEventListener("click", function() {
         5: "cat_Cry.jpg",
         6: "think.png",
         7: "cat_gun_shut_himself.jpg"
-
     };
-    if (imgMap[clickCount]) mainImage.src = `./images/${imgMap[clickCount]}`;
+    
+    if (imgMap[clickCount]) {
+        mainImage.src = `./images/${imgMap[clickCount]}`;
+    }
 });
 
+// Event klik tombol YES
 yesButton.addEventListener("click", function() {
-
     const fireworksInterval = setInterval(() => {
         for(let i=0; i<5; i++) createFirework();
     }, 200);
@@ -74,7 +82,7 @@ yesButton.addEventListener("click", function() {
                 <img src="./images/hug.png" alt="拥抱" class="yes-image">
                 <h1> Now we are a couple of lovers <br>
                 You are not allowed to decline😝 </h1>            
-                </div>
+            </div>
         `;
         document.body.style.overflow = "hidden";
     }, 3000);
