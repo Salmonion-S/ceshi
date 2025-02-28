@@ -1,4 +1,4 @@
-const preloadImages = ['shocked.png', 'think.png', 'angry.png', 'crying.png', 'hug.png'];
+const preloadImages = ['shocked.png', 'think.png', 'angry.png', 'crying.png', 'cat_cry', 'cat_gun_shut_himself.jpg', 'hug.png'];
 preloadImages.forEach(img => {
   new Image().src = `./images/${img}`;
 });
@@ -39,14 +39,19 @@ noButton.addEventListener("click", function() {
     if (navigator.vibrate) navigator.vibrate(100);
     clickCount++;
 
-    // Membesarkan container tanpa border
-    container.style.transform = `translate(-50%, -50%) scale(${1 + (clickCount * 0.1)})`;
+    // Memperlambat efek pembesaran container
+    let scaleFactor = 1 + (clickCount * 0.05);
+    container.style.transform = `translate(-50%, -50%) scale(${scaleFactor})`;
 
-    yesButton.style.transform = `scale(${1 + (clickCount * 0.2)})`;
-    noButton.style.transform = `translateX(${clickCount * 50}px)`;
+    // Memperlambat efek pembesaran tombol YES
+    yesButton.style.transform = `scale(${1 + (clickCount * 0.1)})`;
+    
+    // Memperlambat efek perpindahan tombol NO
+    noButton.style.transform = `translateX(${clickCount * 30}px)`;
 
-    mainImage.style.transform = `translateY(-${clickCount * 25}px)`;
-    questionText.style.transform = `translateY(-${clickCount * 25}px)`;
+    // Memperlambat pergerakan gambar dan teks ke atas
+    mainImage.style.transform = `translateY(-${clickCount * 15}px)`;
+    questionText.style.transform = `translateY(-${clickCount * 15}px)`;
 
     if (clickCount <= noTexts.length) {
         noButton.innerText = noTexts[clickCount - 1];
@@ -57,7 +62,7 @@ noButton.addEventListener("click", function() {
         2: "think.png", 
         3: "angry.png",
         4: "crying.png",
-        5: "cat_Cry.jpg",
+        5: "white_cat_cry.jpg",
         6: "think.png",
         7: "cat_gun_shut_himself.jpg"
     };
